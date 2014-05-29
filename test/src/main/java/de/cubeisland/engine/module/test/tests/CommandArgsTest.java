@@ -19,7 +19,7 @@ package de.cubeisland.engine.module.test.tests;
 
 import java.util.Map.Entry;
 
-import de.cubeisland.engine.core.command.parameterized.ParameterizedContext;
+import de.cubeisland.engine.core.command.CubeContext;
 import de.cubeisland.engine.core.command.reflected.Command;
 import de.cubeisland.engine.core.command.reflected.ReflectedCommand;
 import de.cubeisland.engine.core.command.reflected.context.Flag;
@@ -46,12 +46,12 @@ public class CommandArgsTest extends Test
     @Command(desc = "This command prints out the args he gets")
     @Flags(@Flag(name = "a"))
     @NParams(@Named(names = "param"))
-    public void testArgs(ParameterizedContext context)
+    public void testArgs(CubeContext context)
     {
         context.sendMessage("Arg dump:");
         context.sendMessage(" ");
 
-        for (Object arg : context.getArgs())
+        for (Object arg : context.getIndexed())
         {
             context.sendMessage("Arg: '" + arg + "'");
         }

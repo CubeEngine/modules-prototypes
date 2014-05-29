@@ -17,7 +17,7 @@
  */
 package de.cubeisland.engine.module.test.tests;
 
-import de.cubeisland.engine.core.command.CommandContext;
+import de.cubeisland.engine.core.command.CubeContext;
 import de.cubeisland.engine.core.command.reflected.Command;
 import de.cubeisland.engine.core.command.reflected.ReflectedCommand;
 import de.cubeisland.engine.core.user.User;
@@ -41,7 +41,7 @@ public class ClearChatTest extends Test
     }
 
     @Command(alias = "cls", desc = "Clears the chat")
-    public void clearscreen(CommandContext context)
+    public void clearscreen(CubeContext context)
     {
         if (context.getSender() instanceof User)
         {
