@@ -32,15 +32,26 @@ import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
-import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 import org.jooq.types.UInteger;
 
 import static de.cubeisland.engine.module.stats.storage.TableStats.TABLE_STATS;
+import static org.jooq.impl.SQLDataType.*;
 
 public class TableStatsData extends TableImpl<StatsDataModel> implements TableCreator<StatsDataModel>
 {
+    // TODO use our auto Table creation
+    private static final Version version = new Version(1, 1);
     public static TableStatsData TABLE_STATSDATA;
+    public final Identity<StatsDataModel, UInteger> IDENTITY;
+    public final UniqueKey<StatsDataModel> PRIMARY_KEY;
+    public final ForeignKey<StatsDataModel, StatsModel> FOREIGN_STAT;
+
+    public final TableField<StatsDataModel, UInteger> KEY = createField("key", INTEGERUNSIGNED, this);
+    public final TableField<StatsDataModel, UInteger> STAT = createField("stat", INTEGERUNSIGNED, this);
+    public final TableField<StatsDataModel, Timestamp> TIME = createField("timestamp", TIMESTAMP,this);
+    public final TableField<StatsDataModel, String> DATA = createField("data", VARCHAR.length(64), this);
+
 
     private TableStatsData(String prefix)
     {
@@ -50,15 +61,6 @@ public class TableStatsData extends TableImpl<StatsDataModel> implements TableCr
         FOREIGN_STAT = Keys.foreignKey(TABLE_STATS.PRIMARY_KEY, this, this.STAT);
     }
 
-    public final Identity<StatsDataModel, UInteger> IDENTITY;
-    public final UniqueKey<StatsDataModel> PRIMARY_KEY;
-    public final ForeignKey<StatsDataModel, StatsModel> FOREIGN_STAT;
-
-    public final TableField<StatsDataModel, UInteger> KEY = createField("key", SQLDataType.INTEGERUNSIGNED, this);
-    public final TableField<StatsDataModel, UInteger> STAT = createField("stat", SQLDataType.INTEGERUNSIGNED, this);
-    public final TableField<StatsDataModel, Timestamp> TIMESTAMP = createField("timestamp", SQLDataType.TIMESTAMP, this);
-    public final TableField<StatsDataModel, String> DATA = createField("data", SQLDataType.VARCHAR.length(64), this);
-    
     public static TableStatsData initTable(Database database)
     {
         MySQLDatabaseConfiguration config = (MySQLDatabaseConfiguration)database.getDatabaseConfig();
@@ -69,18 +71,17 @@ public class TableStatsData extends TableImpl<StatsDataModel> implements TableCr
     @Override
     public void createTable(Connection connection) throws SQLException
     {
-        connection.prepareStatement("CREATE TABLE IF NOT EXISTS " + this.getName()+ " (\n" +
+        connection.prepareStatement("CREATE TABLE IF NOT EXISTS " + this.getName() + " (\n" +
                                         "`key` int(10) unsigned NOT NULL AUTO_INCREMENT,\n" +
                                         "`stat` int(10) unsigned NOT NULL,\n" +
                                         "`timestamp` timestamp NOT NULL,\n" +
                                         "`data` varchar(64) DEFAULT NULL,\n" +
                                         "PRIMARY KEY (`key`),\n" +
-                                        "FOREIGN KEY `f_stat`(`stat`) REFERENCES " + TABLE_STATS.getName() + "(`key`) ON UPDATE CASCADE ON DELETE CASCADE)" +
+                                        "FOREIGN KEY `f_stat`(`stat`) REFERENCES " + TABLE_STATS.getName()
+                                        + "(`key`) ON UPDATE CASCADE ON DELETE CASCADE)" +
                                         "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci\n" +
                                         "COMMENT='1.0.0'").execute();
     }
-
-    private static final Version version = new Version(1,1);
 
     @Override
     public Version getTableVersion()
@@ -107,12 +108,14 @@ public class TableStatsData extends TableImpl<StatsDataModel> implements TableCr
     }
 
     @Override
-    public List<ForeignKey<StatsDataModel, ?>> getReferences() {
+    public List<ForeignKey<StatsDataModel, ?>> getReferences()
+    {
         return Arrays.<ForeignKey<StatsDataModel, ?>>asList(FOREIGN_STAT);
     }
 
     @Override
-    public Class<StatsDataModel> getRecordType() {
+    public Class<StatsDataModel> getRecordType()
+    {
         return StatsDataModel.class;
     }
 }

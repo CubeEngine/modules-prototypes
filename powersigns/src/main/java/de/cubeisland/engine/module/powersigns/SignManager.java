@@ -73,7 +73,7 @@ public class SignManager implements Listener
         }
         for (PowerSignModel powerSignModel : powerSignModels)
         {
-            SignType signType = this.registerdSignTypes.get(powerSignModel.getPSID());
+            SignType signType = this.registerdSignTypes.get(powerSignModel.getValue(TABLE_POWER_SIGN.PSID));
             SignTypeInfo info = signType.createInfo(powerSignModel);
             if (info == null)
             {
@@ -105,14 +105,14 @@ public class SignManager implements Listener
     @EventHandler
     public void onChunkLoad(ChunkLoadEvent event)
     {
-        long worldID = this.module.getCore().getWorldManager().getWorldId(event.getChunk().getWorld());
+        UInteger worldID = this.module.getCore().getWorldManager().getWorldId(event.getChunk().getWorld());
         Collection<PowerSignModel> powerSignModels = this.dsl.selectFrom(TABLE_POWER_SIGN).
             where(TABLE_POWER_SIGN.CHUNKX.eq(event.getChunk().getX()),
                   TABLE_POWER_SIGN.CHUNKX.eq(event.getChunk().getZ()),
-                  TABLE_POWER_SIGN.WORLD.eq(UInteger.valueOf(worldID))).fetch();
+                  TABLE_POWER_SIGN.WORLD.eq(worldID)).fetch();
         for (PowerSignModel powerSignModel : powerSignModels)
         {
-            SignType signType = this.registerdSignTypes.get(powerSignModel.getPSID());
+            SignType signType = this.registerdSignTypes.get(powerSignModel.getValue(TABLE_POWER_SIGN.PSID));
             SignTypeInfo info = signType.createInfo(powerSignModel);
             PowerSign<?, ?> powerSign = new PowerSign(signType,info);
             this.loadedPowerSigns.put(powerSign.getLocation(),powerSign);

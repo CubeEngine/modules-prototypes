@@ -24,6 +24,7 @@ import org.bukkit.block.Sign;
 import de.cubeisland.engine.module.powersigns.Powersigns;
 import de.cubeisland.engine.module.powersigns.SignManager;
 import de.cubeisland.engine.module.powersigns.storage.PowerSignModel;
+import org.jooq.types.UInteger;
 
 import static de.cubeisland.engine.module.powersigns.storage.TablePowerSign.TABLE_POWER_SIGN;
 
@@ -72,7 +73,7 @@ public abstract class SignTypeInfo<T extends SignType>
         return this.signType;
     }
 
-    public long getWorldID()
+    public UInteger getWorldID()
     {
         return this.module.getCore().getWorldManager().getWorldId(location.getWorld());
     }

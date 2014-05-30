@@ -33,12 +33,13 @@ import de.cubeisland.engine.module.powersigns.storage.PowerSignModel;
 
 import static de.cubeisland.engine.core.util.formatter.MessageType.NEGATIVE;
 import static de.cubeisland.engine.core.util.formatter.MessageType.POSITIVE;
+import static de.cubeisland.engine.module.powersigns.storage.TablePowerSign.TABLE_POWER_SIGN;
 
-public class LiftSign extends SignType<LiftSign,LiftSignInfo>
+public class LiftSign extends SignType<LiftSign, LiftSignInfo>
 {
     public LiftSign()
     {
-        super("Lift","Lift Up","Lift Down");
+        super("Lift", "Lift Up", "Lift Down");
     }
 
     @Override
@@ -48,13 +49,13 @@ public class LiftSign extends SignType<LiftSign,LiftSignInfo>
     }
 
     @Override
-    public boolean onSignLeftClick(User user, PowerSign<LiftSign,LiftSignInfo> sign)
+    public boolean onSignLeftClick(User user, PowerSign<LiftSign, LiftSignInfo> sign)
     {
         return false;
     }
 
     @Override
-    public boolean onSignRightClick(User user, PowerSign<LiftSign,LiftSignInfo> sign)
+    public boolean onSignRightClick(User user, PowerSign<LiftSign, LiftSignInfo> sign)
     {
         LiftSignInfo signTypeInfo = sign.getSignTypeInfo();
         if (signTypeInfo.up == null)
@@ -77,14 +78,14 @@ public class LiftSign extends SignType<LiftSign,LiftSignInfo>
     }
 
     @Override
-    public boolean onSignShiftRightClick(User user, PowerSign<LiftSign,LiftSignInfo> sign)
+    public boolean onSignShiftRightClick(User user, PowerSign<LiftSign, LiftSignInfo> sign)
     {
         //TODO showSignInfo
         return true;
     }
 
     @Override
-    public boolean onSignShiftLeftClick(User user, PowerSign<LiftSign,LiftSignInfo> sign)
+    public boolean onSignShiftLeftClick(User user, PowerSign<LiftSign, LiftSignInfo> sign)
     {
         LiftSignInfo signTypeInfo = sign.getSignTypeInfo();
         if (signTypeInfo.up == null)
@@ -108,27 +109,32 @@ public class LiftSign extends SignType<LiftSign,LiftSignInfo>
         LiftSignInfo attached = signTypeInfo.getAttachedLiftSign();
         if (signTypeInfo.up)
         {
-            user.sendTranslated(POSITIVE, "Changed destination to {input} floors up! Floorname: {input}", signTypeInfo.destFloor, attached.floorName);
+            user.sendTranslated(POSITIVE, "Changed destination to {input} floors up! Floorname: {input}",
+                                signTypeInfo.destFloor, attached.floorName);
         }
         else
         {
-            user.sendTranslated(POSITIVE, "Changed destination to {amount} floors down! Floorname: {input}", signTypeInfo.destFloor, attached.floorName);
+            user.sendTranslated(POSITIVE, "Changed destination to {amount} floors down! Floorname: {input}",
+                                signTypeInfo.destFloor, attached.floorName);
         }
         return true;
     }
 
     @Override
-    public LiftSignInfo createInfo(long owner, Location location, String line1, String line2, String line3, String line4)
+    public LiftSignInfo createInfo(long owner, Location location, String line1, String line2, String line3,
+                                   String line4)
     {
         int amount = 1;
         try
         {
             amount = Integer.valueOf(line4);
         }
-        catch (NumberFormatException ignore){}
+        catch (NumberFormatException ignore)
+        {
+        }
         Boolean up;
         line2 = ChatFormat.stripFormats(line2).toLowerCase();
-        if (line2.equals("[" + this.getPSID()+ "]") || line2.equals("[lift]"))
+        if (line2.equals("[" + this.getPSID() + "]") || line2.equals("[lift]"))
         {
             up = null;
         }
@@ -144,18 +150,21 @@ public class LiftSign extends SignType<LiftSign,LiftSignInfo>
         {
             throw new IllegalArgumentException();
         }
-        return new LiftSignInfo(this.module,location,owner,line1,up,amount);
+        return new LiftSignInfo(this.module, location, owner, line1, up, amount);
     }
 
     @Override
     public LiftSignInfo createInfo(PowerSignModel model)
     {
-        Location location = new Location(this.module.getCore().getWorldManager().getWorld(model.getWorldId().longValue()),model.getX(),model.getY(),model.getZ());
+        Location location = new Location(this.module.getCore().getWorldManager().getWorld(model.getValue(
+            TABLE_POWER_SIGN.WORLD)), model.getValue(TABLE_POWER_SIGN.X), model.getValue(TABLE_POWER_SIGN.Y),
+                                         model.getValue(TABLE_POWER_SIGN.Z));
         BlockState state = location.getBlock().getState();
         if (state instanceof Sign)
         {
             Sign sign = (Sign)(location.getBlock().getState());
-            return this.createInfo(model.getOwnerId().longValue(),location,sign.getLine(0),sign.getLine(1),sign.getLine(2),sign.getLine(3));
+            return this.createInfo(model.getValue(TABLE_POWER_SIGN.OWNER_ID).longValue(), location, sign.getLine(0), sign.getLine(1),
+                                   sign.getLine(2), sign.getLine(3));
         }
         this.module.getLog().warn("Expected a sign which was not found, at {}:{}:{} in {} ", state.getX(), state.getY(),
                                   state.getZ(), state.getWorld().getName());
@@ -172,9 +181,10 @@ public class LiftSign extends SignType<LiftSign,LiftSignInfo>
         private Location destination;
 
 
-        public LiftSignInfo(Powersigns module, Location location, long creator, String floorName, Boolean up, int amount)
+        public LiftSignInfo(Powersigns module, Location location, long creator, String floorName, Boolean up,
+                            int amount)
         {
-            super(module,location,LiftSign.this,creator);
+            super(module, location, LiftSign.this, creator);
             this.floorName = floorName;
             this.up = up;
             this.destFloor = amount;
@@ -185,7 +195,8 @@ public class LiftSign extends SignType<LiftSign,LiftSignInfo>
             if (this.destination != null) // saved destination ?
             {
                 Block block = destination.getBlock();
-                if (block != null && (block.getType().equals(Material.SIGN_POST) || block.getType().equals(Material.WALL_SIGN))) //found a sign
+                if (block != null && (block.getType().equals(Material.SIGN_POST) || block.getType().equals(
+                    Material.WALL_SIGN))) //found a sign
                 {
                     String psid = this.manager.getPSID(destination);
                     if (psid != null && psid.equals(this.signType.getPSID())) // is LiftSign
@@ -201,13 +212,18 @@ public class LiftSign extends SignType<LiftSign,LiftSignInfo>
                     return this.findLiftSign(floors);
                 }
             }
-            if (this.up == null) return null;
-            Location searchLocation = this.getLocation().clone();
-            while (searchLocation.getBlockY() <= searchLocation.getWorld().getMaxHeight() && searchLocation.getBlockY() >= 0)
+            if (this.up == null)
             {
-                searchLocation.add(0,this.up ? 1 : -1,0);
+                return null;
+            }
+            Location searchLocation = this.getLocation().clone();
+            while (searchLocation.getBlockY() <= searchLocation.getWorld().getMaxHeight()
+                && searchLocation.getBlockY() >= 0)
+            {
+                searchLocation.add(0, this.up ? 1 : -1, 0);
                 Block block = searchLocation.getBlock();
-                if (block != null && (block.getType().equals(Material.SIGN_POST) || block.getType().equals(Material.WALL_SIGN))) //found a sign
+                if (block != null && (block.getType().equals(Material.SIGN_POST) || block.getType().equals(
+                    Material.WALL_SIGN))) //found a sign
                 {
                     String psid = this.manager.getPSID(searchLocation);
                     if (psid != null && psid.equals(this.signType.getPSID())) // is LiftSign
@@ -217,7 +233,7 @@ public class LiftSign extends SignType<LiftSign,LiftSignInfo>
                         {
                             this.module.getLog().debug("Valid found dest-loc");
                             this.destination = searchLocation.clone();
-                            PowerSign<LiftSign,LiftSignInfo> powerSign = this.manager.getPowerSign(destination);
+                            PowerSign<LiftSign, LiftSignInfo> powerSign = this.manager.getPowerSign(destination);
                             powerSign.getSignTypeInfo().updateSignText();
                             this.updateSignText();
                             return searchLocation;
@@ -245,7 +261,7 @@ public class LiftSign extends SignType<LiftSign,LiftSignInfo>
         public void updateSignText()
         {
             Sign sign = this.getSign();
-            sign.setLine(0,this.floorName);
+            sign.setLine(0, this.floorName);
             if (this.up == null)
             {
                 sign.setLine(1, ChatFormat.DARK_BLUE + "[Lift]");
@@ -265,9 +281,9 @@ public class LiftSign extends SignType<LiftSign,LiftSignInfo>
             }
             else
             {
-                sign.setLine(2,this.getAttachedLiftSign().floorName);
+                sign.setLine(2, this.getAttachedLiftSign().floorName);
             }
-            sign.setLine(3,String.valueOf(this.destFloor));
+            sign.setLine(3, String.valueOf(this.destFloor));
             sign.update(true);
         }
 
@@ -286,7 +302,10 @@ public class LiftSign extends SignType<LiftSign,LiftSignInfo>
         public LiftSignInfo getAttachedLiftSign()
         {
             Location location = this.findLiftSign(this.destFloor);
-            if (location == null) return null;
+            if (location == null)
+            {
+                return null;
+            }
             return (LiftSignInfo)this.manager.getPowerSign(location).getSignTypeInfo();
         }
 

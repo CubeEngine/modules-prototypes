@@ -83,7 +83,7 @@ public class StatsManager
         {
             try
             {
-                registeredStats.add((Class<? extends Stat>)Class.forName(stat.getStat()));
+                registeredStats.add((Class<? extends Stat>)Class.forName(stat.getValue(TABLE_STATS.STAT)));
             }
             catch (ClassNotFoundException e)
             {
