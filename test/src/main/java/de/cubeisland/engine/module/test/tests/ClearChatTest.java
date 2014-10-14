@@ -17,9 +17,8 @@
  */
 package de.cubeisland.engine.module.test.tests;
 
-import de.cubeisland.engine.core.command.context.CubeContext;
-import de.cubeisland.engine.core.command.reflected.Command;
-import de.cubeisland.engine.core.command.reflected.ReflectedCommand;
+import de.cubeisland.engine.command.methodic.Command;
+import de.cubeisland.engine.core.command.CommandContext;
 import de.cubeisland.engine.core.user.User;
 import de.cubeisland.engine.core.util.ChatFormat;
 
@@ -36,14 +35,14 @@ public class ClearChatTest extends Test
     @Override
     public void onEnable()
     {
-        module.getCore().getCommandManager().registerCommands(module, this, ReflectedCommand.class);
+        module.getCore().getCommandManager().addCommands(module.getCore().getCommandManager(), module, this);
         this.setSuccess(true);
     }
 
     @Command(alias = "cls", desc = "Clears the chat")
-    public void clearscreen(CubeContext context)
+    public void clearscreen(CommandContext context)
     {
-        if (context.getSender() instanceof User)
+        if (context.getSource() instanceof User)
         {
             for (int i = 0; i < MAX_CHAT_LINES; ++i)
             {
