@@ -35,7 +35,7 @@ import de.cubeisland.engine.reflect.exception.ConversionException;
 import de.cubeisland.engine.core.module.Module;
 import de.cubeisland.engine.core.storage.database.Database;
 import de.cubeisland.engine.core.task.TaskManager;
-import de.cubeisland.engine.logging.Log;
+import de.cubeisland.engine.logscribe.Log;
 import de.cubeisland.engine.module.stats.annotations.Configured;
 import de.cubeisland.engine.module.stats.annotations.Scheduled;
 import de.cubeisland.engine.module.stats.configuration.DynamicSection;
