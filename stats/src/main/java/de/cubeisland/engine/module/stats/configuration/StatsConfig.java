@@ -20,7 +20,7 @@ package de.cubeisland.engine.module.stats.configuration;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.cubeisland.engine.reflect.ReflectedYaml;
+import de.cubeisland.engine.reflect.codec.yaml.ReflectedYaml;
 import de.cubeisland.engine.reflect.annotations.Comment;
 
 @SuppressWarnings("all")

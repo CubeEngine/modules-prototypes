@@ -34,7 +34,6 @@ import de.cubeisland.engine.core.bukkit.BukkitCore;
 import de.cubeisland.engine.core.module.Module;
 import de.cubeisland.engine.module.test.tests.AsyncCommandTest;
 import de.cubeisland.engine.module.test.tests.ClearChatTest;
-import de.cubeisland.engine.module.test.tests.CommandArgsTest;
 import de.cubeisland.engine.module.test.tests.DatabaseTest;
 import de.cubeisland.engine.module.test.tests.MatchTest;
 import de.cubeisland.engine.module.test.tests.ModuleTest;
@@ -57,7 +56,6 @@ public class Test extends Module
         this.registerTest("World generator test", new WorldGeneratorTest(this));
         this.registerTest("Async command test", new AsyncCommandTest(this));
         this.registerTest("Clear chat test", new ClearChatTest(this));
-        this.registerTest("Command args test", new CommandArgsTest(this));
         this.registerTest("Database test", new DatabaseTest(this));
         this.registerTest("Match test", new MatchTest(this));
         this.registerTest("Module test", new ModuleTest(this));

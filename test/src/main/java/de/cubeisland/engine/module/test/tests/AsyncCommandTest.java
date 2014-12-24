@@ -17,10 +17,9 @@
  */
 package de.cubeisland.engine.module.test.tests;
 
-import de.cubeisland.engine.core.command.CubeContext;
-import de.cubeisland.engine.core.command.CommandResult;
-import de.cubeisland.engine.core.command.reflected.Command;
-import de.cubeisland.engine.core.command.reflected.ReflectedCommand;
+import de.cubeisland.engine.command.methodic.Command;
+import de.cubeisland.engine.command.result.CommandResult;
+import de.cubeisland.engine.core.command.CommandContext;
 import de.cubeisland.engine.core.command.result.AsyncResult;
 
 public class AsyncCommandTest extends Test
@@ -35,17 +34,17 @@ public class AsyncCommandTest extends Test
     @Override
     public void onEnable()
     {
-        module.getCore().getCommandManager().registerCommands(module, this, ReflectedCommand.class);
+        module.getCore().getCommandManager().addCommands(module.getCore().getCommandManager(), module, this);
         this.setSuccess(true);
     }
 
     @Command(desc = "A command that tests async execution.")
-    public CommandResult asyncCommand(CubeContext context)
+    public CommandResult asyncCommand(CommandContext context)
     {
         context.sendMessage("Async GO!");
         return new AsyncResult() {
             @Override
-            public void main(CubeContext sender)
+            public void main(CommandContext sender)
             {
                 try
                 {
@@ -63,7 +62,7 @@ public class AsyncCommandTest extends Test
             }
 
             @Override
-            public void onFinish(CubeContext context)
+            public void onFinish(CommandContext context)
             {
                 context.sendMessage("Finished!");
             }
