@@ -17,12 +17,13 @@
  */
 package de.cubeisland.engine.module.stats.configuration;
 
-import de.cubeisland.engine.reflect.codec.ConverterManager;
-import de.cubeisland.engine.reflect.codec.converter.Converter;
-import de.cubeisland.engine.reflect.exception.ConversionException;
-import de.cubeisland.engine.reflect.node.MapNode;
-import de.cubeisland.engine.reflect.node.Node;
-import de.cubeisland.engine.reflect.node.NullNode;
+import de.cubeisland.engine.converter.ConverterManager;
+import de.cubeisland.engine.converter.converter.ClassedConverter;
+import de.cubeisland.engine.converter.ConversionException;
+import de.cubeisland.engine.converter.node.MapNode;
+import de.cubeisland.engine.converter.node.Node;
+import de.cubeisland.engine.converter.node.NullNode;
+import de.cubeisland.engine.reflect.annotations.Converter;
 import de.cubeisland.engine.reflect.util.StringUtils;
 
 public class DynamicSection
@@ -93,6 +94,7 @@ public class DynamicSection
      * @return The stored value, or null if this Section didn't have a value with that key
      * @throws ConversionException
      */
+    @SuppressWarnings("unchecked")
     public Object get(String key, Class<?> type) throws ConversionException
     {
         Node node = this.getNode(key);
@@ -100,8 +102,8 @@ public class DynamicSection
         {
             return null;
         }
-        Converter converter = cm.matchConverter(type);
-        return converter.fromNode(node, cm);
+        de.cubeisland.engine.converter.converter.Converter converter = cm.matchConverter(type);
+        return converter.fromNode(node, null, cm);
     }
 
     public MapNode getMapNode()
