@@ -1,5 +1,5 @@
-CubeEngine
-==========
+CubeEngine - Module Prototypes
+==============================
 
 CubeEngine Minecraft module framework
 
