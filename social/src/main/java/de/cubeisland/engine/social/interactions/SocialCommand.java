@@ -17,12 +17,15 @@
  */
 package de.cubeisland.engine.social.interactions;
 
+import de.cubeisland.engine.command.methodic.Command;
+import de.cubeisland.engine.command.methodic.Param;
+import de.cubeisland.engine.command.methodic.Params;
+import de.cubeisland.engine.core.command.CommandContext;
 import de.cubeisland.engine.social.Social;
-
-import de.cubeisland.engine.core.command.parameterized.Param;
-import de.cubeisland.engine.core.command.parameterized.ParameterizedContext;
-import de.cubeisland.engine.core.command.reflected.Command;
 import de.cubeisland.engine.core.user.User;
+
+import static de.cubeisland.engine.core.util.formatter.MessageType.NEGATIVE;
+import static de.cubeisland.engine.core.util.formatter.MessageType.POSITIVE;
 
 public class SocialCommand
 {
@@ -33,42 +36,36 @@ public class SocialCommand
         this.module = module;
     }
 
-    @Command(names = {
-        "facebook", "fb"
-    }, desc = "Facebook", params = {
-        @Param(names = {
-                                "User", "u"
-        }, type = User.class),
-            @Param(names = {
-                "Code", "c"
-            }, type = String.class)
+    @Command(name = "facebook", alias = "fb", desc = "Facebook")
+    @Params(nonpositional = {
+        @Param(names = {"user", "u"}, type = User.class), @Param(names = {"code", "c"}, type = String.class)
     })
-    public void facebook(ParameterizedContext context)
+    public void facebook(CommandContext context)
     {
-        if (!context.isSender(User.class) && !context.hasParam("User"))
+        if (!context.isSource(User.class) && !context.hasNamed("user"))
         {
-            context.sendTranslated("You have to include a player to log in");
+            context.sendTranslated(NEGATIVE, "You have to include a player to log in");
             return;
         }
 
         User user;
-        if (context.hasParam("User"))
+        if (context.hasNamed("user"))
         {
-            user = context.getParam("User");
+            user = context.get("user");
         }
         else
         {
-            user = (User)context.getSender();
+            user = (User)context.getSource();
         }
 
-        if (context.hasParam("Code"))
+        if (context.hasNamed("code"))
         {
-            String verifyCode = context.getString("Code");
+            String verifyCode = context.getString("code");
             module.getFacebookManager().initializeUser(user, verifyCode);
             return;
         }
 
-        context.sendTranslated("Here is your auth address: %s", module.getFacebookManager().getAuthURL(user));
+        context.sendTranslated(POSITIVE, "Here is your auth address: {}", module.getFacebookManager().getAuthURL(user));
 
         // @Quick_Wango This is where you need to get the response
     }

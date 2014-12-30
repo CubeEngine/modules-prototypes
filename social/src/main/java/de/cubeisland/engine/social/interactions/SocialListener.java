@@ -27,6 +27,9 @@ import com.restfb.exception.FacebookException;
 import de.cubeisland.engine.core.user.User;
 import de.cubeisland.engine.core.user.UserManager;
 
+import static de.cubeisland.engine.core.util.formatter.MessageType.NEGATIVE;
+import static de.cubeisland.engine.core.util.formatter.MessageType.POSITIVE;
+
 public class SocialListener implements Listener
 {
     private final Social module;
@@ -46,20 +49,20 @@ public class SocialListener implements Listener
             User user = userManager.getExactUser(event.getPlayer().getName());
             if (!module.getFacebookManager().hasUser(user))
             {
-                user.sendTranslated("You are not logged into facebook");
+                user.sendTranslated(NEGATIVE, "You are not logged into facebook");
                 return;
             }
             String postId = module.getFacebookManager().fetchPost(event.getClickedBlock().getLocation());
             try
             {
                 module.getFacebookManager().getUser(user).likeObject(postId);
-                user.sendTranslated("You have liked the post");
+                user.sendTranslated(POSITIVE, "You have liked the post");
 
             }
             catch (FacebookException ex)
             {
-                user.sendTranslated("The post could not be liked.");
-                user.sendTranslated("The error was: %s", ex.getLocalizedMessage());
+                user.sendTranslated(NEGATIVE, "The post could not be liked.");
+                user.sendTranslated(NEGATIVE, "The error was: {}", ex.getLocalizedMessage());
             }
         }
         module.getLog().info("fail");

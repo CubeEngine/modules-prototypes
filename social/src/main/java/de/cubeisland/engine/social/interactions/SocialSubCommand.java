@@ -17,6 +17,8 @@
  */
 package de.cubeisland.engine.social.interactions;
 
+import de.cubeisland.engine.command.CommandSource;
+import de.cubeisland.engine.command.methodic.Command;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
@@ -25,10 +27,12 @@ import de.cubeisland.engine.social.Social;
 
 import com.restfb.exception.FacebookException;
 import de.cubeisland.engine.core.command.CommandContext;
-import de.cubeisland.engine.core.command.CommandSender;
-import de.cubeisland.engine.core.command.reflected.Command;
 import de.cubeisland.engine.core.user.User;
 import de.cubeisland.engine.core.util.ChatFormat;
+
+import static de.cubeisland.engine.core.util.formatter.MessageType.CRITICAL;
+import static de.cubeisland.engine.core.util.formatter.MessageType.NEGATIVE;
+import static de.cubeisland.engine.core.util.formatter.MessageType.POSITIVE;
 
 public class SocialSubCommand
 {
@@ -42,54 +46,54 @@ public class SocialSubCommand
     @Command(desc = "post a message")
     public void post(CommandContext context)
     {
-        CommandSender sender = context.getSender();
+        CommandSource sender = context.getSource();
         if (sender instanceof User)
         {
             User user = (User)sender;
             StringBuilder message = new StringBuilder();
-            for (int x = 0; x < context.getArgCount(); x++)
+            for (int x = 0; x < context.getPositionalCount(); x++)
             {
                 message.append(context.getString(x)).append(' ');
             }
 
             try
             {
-                context.sendTranslated("Your message has been posted, id: %s", module.getFacebookManager().getUser(user)
+                context.sendTranslated(POSITIVE, "Your message has been posted, id: {}", module.getFacebookManager().getUser(user)
                                                                                      .publishMessage(message.toString())
                                                                                      .getId());
             }
             catch (FacebookException ex)
             {
-                context.sendTranslated("Your message could for some reason not be sent.");
-                context.sendTranslated("The error message: %s", ex.getLocalizedMessage());
+                context.sendTranslated(NEGATIVE, "Your message could for some reason not be sent.");
+                context.sendTranslated(NEGATIVE, "The error message: {}", ex.getLocalizedMessage());
             }
         }
         else
         {
-            context.sendTranslated("You have to be a player to use this command");
+            context.sendTranslated(NEGATIVE, "You have to be a player to use this command");
         }
     }
 
     @Command(desc = "sign like!")
     public void sign(CommandContext context)
     {
-        if (!context.isSender(User.class))
+        if (!context.isSource(User.class))
         {
-            context.sendTranslated("You cant execute this command from the console");
+            context.sendTranslated(CRITICAL, "You can't execute this command from the console");
             return;
         }
 
-        User sender = (User)context.getSender();
+        User sender = (User)context.getSource();
 
         Block targetBlock = sender.getTargetBlock(null, 9);
         if (targetBlock == null)
         {
-            context.sendTranslated("You have to look at a sign less than 9 meters away.");
+            context.sendTranslated(NEGATIVE, "You have to look at a sign less than 9 meters away.");
             return;
         }
         if (!(targetBlock.getType() == Material.SIGN || targetBlock.getType() == Material.WALL_SIGN || targetBlock.getType() == Material.SIGN_POST))
         {
-            context.sendTranslated("You have to look at a sign less than 9 meters away");
+            context.sendTranslated(NEGATIVE, "You have to look at a sign less than 9 meters away");
             return;
         }
 
@@ -97,7 +101,7 @@ public class SocialSubCommand
         try
         {
             StringBuilder message = new StringBuilder();
-            for (int x = 0; x < context.getArgCount(); x++)
+            for (int x = 0; x < context.getPositionalCount(); x++)
             {
                 message.append(context.getString(x)).append(' ');
             }
@@ -109,14 +113,12 @@ public class SocialSubCommand
         catch (Exception ex)
         {
             targetSign.setLine(0, ChatFormat.parseFormats("&c" + ChatFormat.stripFormats(targetSign.getLine(0))));
-            context.sendTranslated("An error occurred while posting the message =(");
-            context.sendTranslated("The error message: %s", ex.getLocalizedMessage());
+            context.sendTranslated(NEGATIVE, "An error occurred while posting the message =(");
+            context.sendTranslated(NEGATIVE, "The error message: {}", ex.getLocalizedMessage());
         }
         finally
         {
             targetSign.update();
         }
-
     }
-
 }

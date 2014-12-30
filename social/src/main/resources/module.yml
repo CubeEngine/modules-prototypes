@@ -1,4 +1,5 @@
 name: ${project.name}
-description: ${project.description}
 version: ${project.version}
+description: ${project.description}
 source-version: ${githead.branch}-${githead.commit}
+build-timestamp: "${timestamp}"

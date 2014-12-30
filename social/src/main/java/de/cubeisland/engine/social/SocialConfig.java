@@ -17,36 +17,27 @@
  */
 package de.cubeisland.engine.social;
 
-import de.cubeisland.engine.core.config.Configuration;
-import de.cubeisland.engine.core.config.annotations.Codec;
-import de.cubeisland.engine.core.config.annotations.Comment;
-import de.cubeisland.engine.core.config.annotations.Option;
-import de.cubeisland.engine.core.config.annotations.Revision;
+import de.cubeisland.engine.reflect.annotations.Comment;
+import de.cubeisland.engine.reflect.codec.yaml.ReflectedYaml;
 
-@Codec("yml")
-@Revision(1)
-public class SocialConfig extends Configuration
+public class SocialConfig extends ReflectedYaml
 {
-    @Option("facebook.key")
     @Comment("The application key for your facebook application")
-    public String facebookAppKey = "";
+    public String key = "";
 
-    @Option("facebook.secret")
     @Comment("The application secret for your facebook application")
-    public String facebookAppSecret = "";
+    public String secret = "";
 
-    @Option("facebook.callback-uri")
     @Comment("This should be the same as the server address + /callback")
-    public String facebookCallbackURL = "";
+    public String callbackUrl = "";
 
     @Override
     public String[] head()
     {
         return new String[] {
-                "The global config for CubeSocial",
-                "To get a Facebook app key and secret you have to register a facebook application",
-                "this can be done here: https://developers.facebook.com/apps",
-                ""
+            "The global config for CubeSocial",
+            "To get a Facebook app key and secret you have to register a facebook application",
+            "this can be done here: https://developers.facebook.com/apps"
         };
     }
 }

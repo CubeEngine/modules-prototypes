@@ -17,9 +17,8 @@
  */
 package de.cubeisland.engine.social;
 
+import de.cubeisland.engine.command.DispatcherCommand;
 import de.cubeisland.engine.core.command.CommandManager;
-import de.cubeisland.engine.core.command.reflected.ReflectedCommand;
-import de.cubeisland.engine.core.config.Configuration;
 import de.cubeisland.engine.core.module.Module;
 import de.cubeisland.engine.social.interactions.SocialCommand;
 import de.cubeisland.engine.social.interactions.SocialListener;
@@ -34,7 +33,7 @@ public class Social extends Module
     @Override
     public void onEnable()
     {
-        this.config = Configuration.load(SocialConfig.class, this);
+        this.config = loadConfig(SocialConfig.class);
         this.facebookManager = new FacebookManager(config);
 
         if (!this.facebookManager.initialize())
@@ -45,8 +44,8 @@ public class Social extends Module
         }
 
         CommandManager cm = this.getCore().getCommandManager();
-        cm.registerCommands(this, new SocialCommand(this), ReflectedCommand.class);
-        cm.registerCommands(this, new SocialSubCommand(this), ReflectedCommand.class, "facebook");
+        cm.addCommands(cm, this, new SocialCommand(this));
+        cm.addCommands((DispatcherCommand)cm.getCommand("facebook"), this, new SocialSubCommand(this));
         this.getCore().getEventManager().registerListener(this, new SocialListener(this));
     }
 

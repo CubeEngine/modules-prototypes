@@ -44,14 +44,14 @@ public class FacebookManager
 
     public FacebookManager(SocialConfig config)
     {
-        this.APP_KEY = config.facebookAppKey;
-        this.APP_SECRET = config.facebookAppSecret;
-        this.CALLBACK = config.facebookCallbackURL;
+        this.APP_KEY = config.key;
+        this.APP_SECRET = config.secret;
+        this.CALLBACK = config.callbackUrl;
 
-        this.services = new HashMap<String, OAuthService>();
+        this.services = new HashMap<>();
         this.config = config;
-        this.users = new HashMap<String, FacebookUser>();
-        this.posts = new HashMap<Location, String>();
+        this.users = new HashMap<>();
+        this.posts = new HashMap<>();
     }
 
     public boolean initialize()
