@@ -18,6 +18,7 @@
 package de.cubeisland.engine.module.powersigns;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -37,7 +38,6 @@ import de.cubeisland.engine.module.powersigns.signtype.LiftSign;
 import de.cubeisland.engine.module.powersigns.signtype.SignType;
 import de.cubeisland.engine.module.powersigns.signtype.SignTypeInfo;
 import de.cubeisland.engine.module.powersigns.storage.PowerSignModel;
-import gnu.trove.map.hash.THashMap;
 import org.jooq.DSLContext;
 import org.jooq.types.UInteger;
 
@@ -45,9 +45,9 @@ import static de.cubeisland.engine.module.powersigns.storage.TablePowerSign.TABL
 
 public class SignManager implements Listener
 {
-    private Map<String,SignType> registerdSignTypes = new THashMap<>();
+    private Map<String,SignType> registerdSignTypes = new HashMap<>();
 
-    private Map<Location,PowerSign> loadedPowerSigns = new THashMap<>();
+    private Map<Location,PowerSign> loadedPowerSigns = new HashMap<>();
     protected Powersigns module;
 
     public final DSLContext dsl;

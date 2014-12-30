@@ -17,6 +17,7 @@
  */
 package de.cubeisland.engine.module.powersigns.signtype;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.Location;
@@ -27,11 +28,9 @@ import de.cubeisland.engine.module.powersigns.Powersigns;
 import de.cubeisland.engine.module.powersigns.SignManager;
 import de.cubeisland.engine.module.powersigns.storage.PowerSignModel;
 
-import gnu.trove.map.hash.THashMap;
-
 public abstract class SignType<T extends SignType, I extends SignTypeInfo>
 {
-    private final Map<String,String> lowerCasedNames = new THashMap<>();
+    private final Map<String,String> lowerCasedNames = new HashMap<>();
     protected SignManager manager;
     protected Powersigns module;
 
