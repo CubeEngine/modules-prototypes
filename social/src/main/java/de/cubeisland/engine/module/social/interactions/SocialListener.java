@@ -17,6 +17,7 @@
  */
 package de.cubeisland.engine.module.social.interactions;
 
+import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -43,7 +44,12 @@ public class SocialListener implements Listener
     @EventHandler
     public void signInteract(PlayerInteractEvent event)
     {
-        if (module.getFacebookManager().hasPost(event.getClickedBlock().getLocation()))
+        Block clickedBlock = event.getClickedBlock();
+        if (clickedBlock == null)
+        {
+            return;
+        }
+        if (module.getFacebookManager().hasPost(clickedBlock.getLocation()))
         {
             User user = userManager.getExactUser(event.getPlayer().getName());
             if (!module.getFacebookManager().hasUser(user))
