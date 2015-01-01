@@ -15,14 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with CubeEngine.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.cubeisland.engine.social.sites.facebook;
+package de.cubeisland.engine.module.social.sites.facebook;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.Location;
 
-import de.cubeisland.engine.social.SocialConfig;
+import de.cubeisland.engine.module.social.SocialConfig;
 
 import de.cubeisland.engine.core.CubeEngine;
 import de.cubeisland.engine.core.user.User;

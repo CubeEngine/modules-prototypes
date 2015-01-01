@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with CubeEngine.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.cubeisland.engine.social.interactions;
+package de.cubeisland.engine.module.social.interactions;
 
 import de.cubeisland.engine.command.CommandSource;
 import de.cubeisland.engine.command.methodic.Command;
@@ -23,7 +23,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 
-import de.cubeisland.engine.social.Social;
+import de.cubeisland.engine.module.social.Social;
 
 import com.restfb.exception.FacebookException;
 import de.cubeisland.engine.core.command.CommandContext;

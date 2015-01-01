@@ -15,15 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with CubeEngine.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.cubeisland.engine.social;
+package de.cubeisland.engine.module.social;
 
 import de.cubeisland.engine.command.DispatcherCommand;
 import de.cubeisland.engine.core.command.CommandManager;
 import de.cubeisland.engine.core.module.Module;
-import de.cubeisland.engine.social.interactions.SocialCommand;
-import de.cubeisland.engine.social.interactions.SocialListener;
-import de.cubeisland.engine.social.interactions.SocialSubCommand;
-import de.cubeisland.engine.social.sites.facebook.FacebookManager;
+import de.cubeisland.engine.module.social.interactions.SocialCommand;
+import de.cubeisland.engine.module.social.interactions.SocialListener;
+import de.cubeisland.engine.module.social.interactions.SocialSubCommand;
+import de.cubeisland.engine.module.social.sites.facebook.FacebookManager;
 
 public class Social extends Module
 {
