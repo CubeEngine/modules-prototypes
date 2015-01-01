@@ -17,22 +17,19 @@
  */
 package de.cubeisland.engine.module.social.interactions;
 
-import de.cubeisland.engine.command.CommandSource;
-import de.cubeisland.engine.command.methodic.Command;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 
-import de.cubeisland.engine.module.social.Social;
-
 import com.restfb.exception.FacebookException;
+import de.cubeisland.engine.command.CommandSource;
+import de.cubeisland.engine.command.methodic.Command;
 import de.cubeisland.engine.core.command.CommandContext;
 import de.cubeisland.engine.core.user.User;
 import de.cubeisland.engine.core.util.ChatFormat;
+import de.cubeisland.engine.module.social.Social;
 
-import static de.cubeisland.engine.core.util.formatter.MessageType.CRITICAL;
-import static de.cubeisland.engine.core.util.formatter.MessageType.NEGATIVE;
-import static de.cubeisland.engine.core.util.formatter.MessageType.POSITIVE;
+import static de.cubeisland.engine.core.util.formatter.MessageType.*;
 
 public class SocialSubCommand
 {

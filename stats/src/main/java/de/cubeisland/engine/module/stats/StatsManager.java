@@ -28,10 +28,8 @@ import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.cubeisland.engine.reflect.annotations.Comment;
-import de.cubeisland.engine.reflect.annotations.Name;
-import de.cubeisland.engine.converter.ConverterManager;
 import de.cubeisland.engine.converter.ConversionException;
+import de.cubeisland.engine.converter.ConverterManager;
 import de.cubeisland.engine.core.module.Module;
 import de.cubeisland.engine.core.storage.database.Database;
 import de.cubeisland.engine.core.task.TaskManager;
@@ -43,6 +41,8 @@ import de.cubeisland.engine.module.stats.stat.Stat;
 import de.cubeisland.engine.module.stats.storage.StatsModel;
 import de.cubeisland.engine.module.stats.storage.TableStats;
 import de.cubeisland.engine.module.stats.storage.TableStatsData;
+import de.cubeisland.engine.reflect.annotations.Comment;
+import de.cubeisland.engine.reflect.annotations.Name;
 import org.jooq.DSLContext;
 
 import static de.cubeisland.engine.module.stats.storage.TableStats.TABLE_STATS;

@@ -21,8 +21,8 @@ import de.cubeisland.engine.command.methodic.Command;
 import de.cubeisland.engine.command.methodic.Param;
 import de.cubeisland.engine.command.methodic.Params;
 import de.cubeisland.engine.core.command.CommandContext;
-import de.cubeisland.engine.module.social.Social;
 import de.cubeisland.engine.core.user.User;
+import de.cubeisland.engine.module.social.Social;
 
 import static de.cubeisland.engine.core.util.formatter.MessageType.NEGATIVE;
 import static de.cubeisland.engine.core.util.formatter.MessageType.POSITIVE;

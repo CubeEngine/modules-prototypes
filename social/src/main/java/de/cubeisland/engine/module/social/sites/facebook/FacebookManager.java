@@ -22,10 +22,9 @@ import java.util.Map;
 
 import org.bukkit.Location;
 
-import de.cubeisland.engine.module.social.SocialConfig;
-
 import de.cubeisland.engine.core.CubeEngine;
 import de.cubeisland.engine.core.user.User;
+import de.cubeisland.engine.module.social.SocialConfig;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FacebookApi;
 import org.scribe.model.Token;
