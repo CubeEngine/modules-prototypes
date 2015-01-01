@@ -31,7 +31,6 @@
     <module>mystcube</module>
     <module>stats</module>
     <module>reputation</module>
-    <module>social</module>
   </modules>
 
   <build>
