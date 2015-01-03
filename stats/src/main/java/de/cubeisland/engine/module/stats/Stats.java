@@ -32,7 +32,7 @@ public class Stats extends Module
     public void onEnable()
     {
         this.getCore().getConfigFactory().getDefaultConverterManager()
-            .registerConverter(DynamicSection.class, new DynamicSectionConverter());
+            .registerConverter(new DynamicSectionConverter(), DynamicSection.class);
         this.config = this.loadConfig(StatsConfig.class);
 
         this.statsManager = new StatsManager(this, getCore().getConfigFactory().getDefaultConverterManager());
