@@ -50,7 +50,7 @@ public class DynamicSection
     {
         Node node = cm.convertToNode(value);
         node.setComments(comment);
-        parent.setExactNode(StringUtils.fieldNameToPath(key), node);
+        parent.set(StringUtils.fieldNameToPath(key), node);
     }
 
     /**
