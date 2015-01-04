@@ -17,89 +17,25 @@
  */
 package de.cubeisland.engine.module.stats.storage;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
-
-import de.cubeisland.engine.core.storage.database.Database;
-import de.cubeisland.engine.core.storage.database.TableCreator;
-import de.cubeisland.engine.core.storage.database.mysql.Keys;
-import de.cubeisland.engine.core.storage.database.mysql.MySQLDatabaseConfiguration;
+import de.cubeisland.engine.core.storage.database.AutoIncrementTable;
 import de.cubeisland.engine.core.util.Version;
-import org.jooq.ForeignKey;
-import org.jooq.Identity;
 import org.jooq.TableField;
-import org.jooq.UniqueKey;
-import org.jooq.impl.TableImpl;
 import org.jooq.types.UInteger;
 
 import static org.jooq.impl.SQLDataType.INTEGERUNSIGNED;
 import static org.jooq.impl.SQLDataType.VARCHAR;
 
-public class TableStats extends TableImpl<StatsModel> implements TableCreator<StatsModel>
+public class TableStats extends AutoIncrementTable<StatsModel, UInteger>
 {
-    private static final Version version = new Version(1);
     public static TableStats TABLE_STATS;
-    public final Identity<StatsModel, UInteger> IDENTITY;
-    public final UniqueKey<StatsModel> PRIMARY_KEY;
-
     public final TableField<StatsModel, UInteger> KEY = createField("key", INTEGERUNSIGNED.length(10), this);
     public final TableField<StatsModel, String> STAT = createField("stat", VARCHAR.length(64), this);
 
     private TableStats(String prefix)
     {
-        super(prefix + "stats");
-        IDENTITY = Keys.identity(this, this.KEY);
-        PRIMARY_KEY = Keys.uniqueKey(this, this.KEY);
-    }
-
-    public static TableStats initTable(Database database)
-    {
-        MySQLDatabaseConfiguration config = (MySQLDatabaseConfiguration)database.getDatabaseConfig();
-        TABLE_STATS = new TableStats(config.tablePrefix);
-        return TABLE_STATS;
-    }
-
-    @Override
-    public void createTable(Connection connection) throws SQLException
-    {
-        connection.prepareStatement("CREATE TABLE IF NOT EXISTS " + this.getName() + " (\n" +
-                                        "`key` int(10) unsigned NOT NULL AUTO_INCREMENT,\n" +
-                                        "`stat` varchar(64) NOT NULL,\n" +
-                                        "PRIMARY KEY (`key`))\n" +
-                                        "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci\n" +
-                                        "COMMENT='1.0.0'").execute();
-    }
-
-    @Override
-    public Version getTableVersion()
-    {
-        return version;
-    }
-
-    @Override
-    public Identity<StatsModel, UInteger> getIdentity()
-    {
-        return IDENTITY;
-    }
-
-    @Override
-    public UniqueKey<StatsModel> getPrimaryKey()
-    {
-        return PRIMARY_KEY;
-    }
-
-    @Override
-    public List<UniqueKey<StatsModel>> getKeys()
-    {
-        return Arrays.asList(PRIMARY_KEY);
-    }
-
-    @Override
-    public List<ForeignKey<StatsModel, ?>> getReferences()
-    {
-        return Arrays.asList();
+        super(prefix + "mail", new Version(1));
+        setAIKey(KEY);
+        addFields(KEY, STAT);
     }
 
     @Override

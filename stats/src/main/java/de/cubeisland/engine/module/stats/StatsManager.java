@@ -51,7 +51,6 @@ import static de.cubeisland.engine.module.stats.storage.TableStatsData.TABLE_STA
 public class StatsManager
 {
     private final Stats module;
-    private final Database database;
     private final DSLContext dsl;
     private final Log log;
     private final ConverterManager converterManager;
@@ -66,13 +65,13 @@ public class StatsManager
     public StatsManager(Stats stats, ConverterManager converterManager)
     {
         this.module = stats;
-        this.database = stats.getCore().getDB();
-        this.dsl = database.getDSL();
         this.log = stats.getLog();
         this.converterManager = converterManager;
 
-        database.registerTable(TableStats.initTable(database));
-        database.registerTable(TableStatsData.initTable(database));
+        final Database database = stats.getCore().getDB();
+        this.dsl = database.getDSL();
+        database.registerTable(TableStats.class);
+        database.registerTable(TableStatsData.class);
 
         this.jsonMapper = new ObjectMapper();
         this.stats = new HashMap<>();
@@ -81,13 +80,22 @@ public class StatsManager
 
         for (StatsModel stat : dsl.selectFrom(TableStats.TABLE_STATS).fetch())
         {
+            final String className = stat.getValue(TABLE_STATS.STAT);
             try
             {
-                registeredStats.add((Class<? extends Stat>)Class.forName(stat.getValue(TABLE_STATS.STAT)));
+                final Class statClass = Class.forName(className);
+                if (Stat.class.isAssignableFrom(statClass))
+                {
+                    registeredStats.add((Class<? extends Stat>)statClass);
+                }
+                else
+                {
+                    stats.getLog().warn("The statistic class {} is not compatible anymore.", className);
+                }
             }
             catch (ClassNotFoundException e)
             {
-                stats.getLog().warn("A previously existing statistic has been removed. ClassNotFoundException...");
+                stats.getLog().warn(e, "The previously existing statistic class {} could not be loaded.", className);
             }
         }
 

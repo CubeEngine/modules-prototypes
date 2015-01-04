@@ -17,100 +17,32 @@
  */
 package de.cubeisland.engine.module.stats.storage;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.List;
 
-import de.cubeisland.engine.core.storage.database.Database;
-import de.cubeisland.engine.core.storage.database.TableCreator;
-import de.cubeisland.engine.core.storage.database.mysql.Keys;
-import de.cubeisland.engine.core.storage.database.mysql.MySQLDatabaseConfiguration;
+import de.cubeisland.engine.core.storage.database.AutoIncrementTable;
 import de.cubeisland.engine.core.util.Version;
-import org.jooq.ForeignKey;
-import org.jooq.Identity;
 import org.jooq.TableField;
-import org.jooq.UniqueKey;
-import org.jooq.impl.TableImpl;
 import org.jooq.types.UInteger;
 
 import static de.cubeisland.engine.module.stats.storage.TableStats.TABLE_STATS;
 import static org.jooq.impl.SQLDataType.*;
 
-public class TableStatsData extends TableImpl<StatsDataModel> implements TableCreator<StatsDataModel>
+public class TableStatsData extends AutoIncrementTable<StatsDataModel, UInteger>
 {
-    // TODO use our auto Table creation
-    private static final Version version = new Version(1, 1);
     public static TableStatsData TABLE_STATSDATA;
-    public final Identity<StatsDataModel, UInteger> IDENTITY;
-    public final UniqueKey<StatsDataModel> PRIMARY_KEY;
-    public final ForeignKey<StatsDataModel, StatsModel> FOREIGN_STAT;
 
     public final TableField<StatsDataModel, UInteger> KEY = createField("key", INTEGERUNSIGNED, this);
     public final TableField<StatsDataModel, UInteger> STAT = createField("stat", INTEGERUNSIGNED, this);
-    public final TableField<StatsDataModel, Timestamp> TIME = createField("timestamp", TIMESTAMP,this);
+    public final TableField<StatsDataModel, Timestamp> TIME = createField("timestamp", TIMESTAMP, this);
     public final TableField<StatsDataModel, String> DATA = createField("data", VARCHAR.length(64), this);
 
 
     private TableStatsData(String prefix)
     {
-        super(prefix + "statsdata");
-        IDENTITY = Keys.identity(this, this.KEY);
-        PRIMARY_KEY = Keys.uniqueKey(this, this.KEY);
-        FOREIGN_STAT = Keys.foreignKey(TABLE_STATS.PRIMARY_KEY, this, this.STAT);
-    }
-
-    public static TableStatsData initTable(Database database)
-    {
-        MySQLDatabaseConfiguration config = (MySQLDatabaseConfiguration)database.getDatabaseConfig();
-        TABLE_STATSDATA = new TableStatsData(config.tablePrefix);
-        return TABLE_STATSDATA;
-    }
-
-    @Override
-    public void createTable(Connection connection) throws SQLException
-    {
-        connection.prepareStatement("CREATE TABLE IF NOT EXISTS " + this.getName() + " (\n" +
-                                        "`key` int(10) unsigned NOT NULL AUTO_INCREMENT,\n" +
-                                        "`stat` int(10) unsigned NOT NULL,\n" +
-                                        "`timestamp` timestamp NOT NULL,\n" +
-                                        "`data` varchar(64) DEFAULT NULL,\n" +
-                                        "PRIMARY KEY (`key`),\n" +
-                                        "FOREIGN KEY `f_stat`(`stat`) REFERENCES " + TABLE_STATS.getName()
-                                        + "(`key`) ON UPDATE CASCADE ON DELETE CASCADE)" +
-                                        "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci\n" +
-                                        "COMMENT='1.0.0'").execute();
-    }
-
-    @Override
-    public Version getTableVersion()
-    {
-        return version;
-    }
-
-    @Override
-    public Identity<StatsDataModel, UInteger> getIdentity()
-    {
-        return IDENTITY;
-    }
-
-    @Override
-    public UniqueKey<StatsDataModel> getPrimaryKey()
-    {
-        return PRIMARY_KEY;
-    }
-
-    @Override
-    public List<UniqueKey<StatsDataModel>> getKeys()
-    {
-        return Arrays.asList(PRIMARY_KEY);
-    }
-
-    @Override
-    public List<ForeignKey<StatsDataModel, ?>> getReferences()
-    {
-        return Arrays.<ForeignKey<StatsDataModel, ?>>asList(FOREIGN_STAT);
+        super(prefix + "statsdata", new Version(1));
+        setAIKey(KEY);
+        addForeignKey(TABLE_STATS.getPrimaryKey(), STAT);
+        addFields(KEY, STAT, TIME, DATA);
     }
 
     @Override
