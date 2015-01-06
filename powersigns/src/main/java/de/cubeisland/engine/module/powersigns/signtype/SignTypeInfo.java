@@ -83,11 +83,11 @@ public abstract class SignTypeInfo<T extends SignType>
         if (this.model == null)
         {
             this.model = this.manager.dsl.newRecord(TABLE_POWER_SIGN).newPSign(this);
-            this.model.asyncInsert();
+            this.model.insert();
         }
         else
         {
-            model.asyncUpdate();
+            model.update();
         }
     }
 
