@@ -42,7 +42,7 @@ public class AsyncCommandTest extends Test
     public CommandResult asyncCommand(CommandContext context)
     {
         context.sendMessage("Async GO!");
-        return new AsyncResult() {
+        return new AsyncResult(module) {
             @Override
             public void main(CommandContext sender)
             {
