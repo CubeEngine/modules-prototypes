@@ -18,13 +18,11 @@
 package de.cubeisland.engine.module.test.tests.worldgenerator;
 
 import java.io.IOException;
-
+import de.cubeisland.engine.module.test.tests.Test;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
-
-import de.cubeisland.engine.module.test.tests.Test;
 
 public class WorldGeneratorTest extends Test
 {
