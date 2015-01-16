@@ -21,7 +21,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-
+import de.cubeisland.engine.core.user.User;
+import de.cubeisland.engine.module.powersigns.signtype.LiftSign;
+import de.cubeisland.engine.module.powersigns.signtype.SignType;
+import de.cubeisland.engine.module.powersigns.signtype.SignTypeInfo;
+import de.cubeisland.engine.module.powersigns.storage.PowerSignModel;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -32,12 +36,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
-
-import de.cubeisland.engine.core.user.User;
-import de.cubeisland.engine.module.powersigns.signtype.LiftSign;
-import de.cubeisland.engine.module.powersigns.signtype.SignType;
-import de.cubeisland.engine.module.powersigns.signtype.SignTypeInfo;
-import de.cubeisland.engine.module.powersigns.storage.PowerSignModel;
 import org.jooq.DSLContext;
 import org.jooq.types.UInteger;
 

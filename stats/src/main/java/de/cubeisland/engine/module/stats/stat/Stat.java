@@ -17,11 +17,10 @@
  */
 package de.cubeisland.engine.module.stats.stat;
 
-import org.bukkit.event.Listener;
-
 import de.cubeisland.engine.core.Core;
 import de.cubeisland.engine.core.module.Module;
 import de.cubeisland.engine.module.stats.StatsManager;
+import org.bukkit.event.Listener;
 
 /**
  * A statistic, for example play time

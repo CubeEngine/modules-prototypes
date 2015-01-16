@@ -18,7 +18,6 @@
 package de.cubeisland.engine.module.mystcube.chunkgenerator;
 
 import java.util.Random;
-
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Biome;

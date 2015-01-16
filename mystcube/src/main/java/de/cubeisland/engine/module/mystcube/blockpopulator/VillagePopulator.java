@@ -18,12 +18,10 @@
 package de.cubeisland.engine.module.mystcube.blockpopulator;
 
 import java.util.Random;
-
 import net.minecraft.server.v1_8_R1.StructureBoundingBox;
 import net.minecraft.server.v1_8_R1.WorldGenVillageStart;
-import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
-
 import org.bukkit.Chunk;
+import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
 
 public class VillagePopulator extends AbstractBlockPopulator
 {

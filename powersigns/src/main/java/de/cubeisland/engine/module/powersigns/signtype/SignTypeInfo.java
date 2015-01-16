@@ -17,13 +17,12 @@
  */
 package de.cubeisland.engine.module.powersigns.signtype;
 
-import org.bukkit.Location;
-import org.bukkit.block.Block;
-import org.bukkit.block.Sign;
-
 import de.cubeisland.engine.module.powersigns.Powersigns;
 import de.cubeisland.engine.module.powersigns.SignManager;
 import de.cubeisland.engine.module.powersigns.storage.PowerSignModel;
+import org.bukkit.Location;
+import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.jooq.types.UInteger;
 
 import static de.cubeisland.engine.module.powersigns.storage.TablePowerSign.TABLE_POWER_SIGN;

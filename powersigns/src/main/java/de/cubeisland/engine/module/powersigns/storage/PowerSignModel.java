@@ -17,10 +17,9 @@
  */
 package de.cubeisland.engine.module.powersigns.storage;
 
-import org.bukkit.Location;
-
 import de.cubeisland.engine.core.storage.database.AsyncRecord;
 import de.cubeisland.engine.module.powersigns.signtype.SignTypeInfo;
+import org.bukkit.Location;
 import org.jooq.types.UInteger;
 
 import static de.cubeisland.engine.module.powersigns.storage.TablePowerSign.TABLE_POWER_SIGN;

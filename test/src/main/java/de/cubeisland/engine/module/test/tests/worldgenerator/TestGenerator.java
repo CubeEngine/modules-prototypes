@@ -18,7 +18,6 @@
 package de.cubeisland.engine.module.test.tests.worldgenerator;
 
 import java.util.Random;
-
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.generator.ChunkGenerator;

@@ -17,19 +17,18 @@
  */
 package de.cubeisland.engine.module.powersigns.signtype;
 
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.Sign;
-import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
-
 import de.cubeisland.engine.core.user.User;
 import de.cubeisland.engine.core.util.ChatFormat;
 import de.cubeisland.engine.module.powersigns.PowerSign;
 import de.cubeisland.engine.module.powersigns.Powersigns;
 import de.cubeisland.engine.module.powersigns.signtype.LiftSign.LiftSignInfo;
 import de.cubeisland.engine.module.powersigns.storage.PowerSignModel;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Sign;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import static de.cubeisland.engine.core.util.formatter.MessageType.NEGATIVE;
 import static de.cubeisland.engine.core.util.formatter.MessageType.POSITIVE;

@@ -18,7 +18,6 @@
 package de.cubeisland.engine.module.stats.storage;
 
 import java.sql.Timestamp;
-
 import org.jooq.impl.UpdatableRecordImpl;
 import org.jooq.types.UInteger;
 

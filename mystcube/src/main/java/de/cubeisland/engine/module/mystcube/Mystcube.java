@@ -21,7 +21,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-
+import de.cubeisland.engine.core.module.Module;
+import de.cubeisland.engine.core.util.ChatFormat;
+import de.cubeisland.engine.module.mystcube.blockpopulator.VillagePopulator;
+import de.cubeisland.engine.module.mystcube.chunkgenerator.FlatMapGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Effect;
@@ -45,11 +48,6 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import de.cubeisland.engine.core.module.Module;
-import de.cubeisland.engine.core.util.ChatFormat;
-import de.cubeisland.engine.module.mystcube.blockpopulator.VillagePopulator;
-import de.cubeisland.engine.module.mystcube.chunkgenerator.FlatMapGenerator;
 
 public class Mystcube extends Module implements Listener
 {

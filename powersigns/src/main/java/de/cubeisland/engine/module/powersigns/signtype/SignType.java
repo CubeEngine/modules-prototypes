@@ -19,14 +19,12 @@ package de.cubeisland.engine.module.powersigns.signtype;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import org.bukkit.Location;
-
 import de.cubeisland.engine.core.user.User;
 import de.cubeisland.engine.module.powersigns.PowerSign;
 import de.cubeisland.engine.module.powersigns.Powersigns;
 import de.cubeisland.engine.module.powersigns.SignManager;
 import de.cubeisland.engine.module.powersigns.storage.PowerSignModel;
+import org.bukkit.Location;
 
 public abstract class SignType<T extends SignType, I extends SignTypeInfo>
 {

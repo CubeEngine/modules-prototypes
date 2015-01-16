@@ -24,12 +24,6 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import net.minecraft.server.v1_8_R1.DedicatedPlayerList;
-import net.minecraft.server.v1_8_R1.EntityPlayer;
-import net.minecraft.server.v1_8_R1.PacketPlayOutKeepAlive;
-import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
-
 import de.cubeisland.engine.core.bukkit.BukkitCore;
 import de.cubeisland.engine.core.module.Module;
 import de.cubeisland.engine.module.test.tests.AsyncCommandTest;
@@ -41,6 +35,10 @@ import de.cubeisland.engine.module.test.tests.UtilTest;
 import de.cubeisland.engine.module.test.tests.l18n.l18nTest;
 import de.cubeisland.engine.module.test.tests.listener.ListenerTest;
 import de.cubeisland.engine.module.test.tests.worldgenerator.WorldGeneratorTest;
+import net.minecraft.server.v1_8_R1.DedicatedPlayerList;
+import net.minecraft.server.v1_8_R1.EntityPlayer;
+import net.minecraft.server.v1_8_R1.PacketPlayOutKeepAlive;
+import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
 
 public class Test extends Module
 {
