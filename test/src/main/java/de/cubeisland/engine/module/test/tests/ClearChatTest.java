@@ -17,7 +17,7 @@
  */
 package de.cubeisland.engine.module.test.tests;
 
-import de.cubeisland.engine.command.methodic.Command;
+import de.cubeisland.engine.command.parametric.Command;
 import de.cubeisland.engine.core.command.CommandContext;
 import de.cubeisland.engine.core.user.User;
 import de.cubeisland.engine.core.util.ChatFormat;
