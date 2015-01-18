@@ -22,18 +22,17 @@ import de.cubeisland.engine.core.util.Version;
 import org.jooq.TableField;
 import org.jooq.types.UInteger;
 
-import static org.jooq.impl.SQLDataType.INTEGERUNSIGNED;
 import static org.jooq.impl.SQLDataType.VARCHAR;
 
 public class TableStats extends AutoIncrementTable<StatsModel, UInteger>
 {
     public static TableStats TABLE_STATS;
-    public final TableField<StatsModel, UInteger> KEY = createField("key", INTEGERUNSIGNED.length(10), this);
+    public final TableField<StatsModel, UInteger> KEY = createField("key", U_INTEGER.length(10), this);
     public final TableField<StatsModel, String> STAT = createField("stat", VARCHAR.length(64), this);
 
     public TableStats(String prefix)
     {
-        super(prefix + "mail", new Version(1));
+        super(prefix + "stats", new Version(1));
         setAIKey(KEY);
         addFields(KEY, STAT);
     }
