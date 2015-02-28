@@ -36,7 +36,7 @@ public class TableStatsData extends AutoIncrementTable<StatsDataModel, UInteger>
     public final TableField<StatsDataModel, String> DATA = createField("data", VARCHAR.length(64), this);
 
 
-    private TableStatsData(String prefix)
+    public TableStatsData(String prefix)
     {
         super(prefix + "statsdata", new Version(1));
         setAIKey(KEY);
