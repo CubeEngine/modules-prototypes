@@ -17,9 +17,11 @@
  */
 package de.cubeisland.engine.module.test.tests;
 
+import de.cubeisland.engine.command.CommandInvocation;
 import de.cubeisland.engine.command.parametric.Command;
 import de.cubeisland.engine.command.result.CommandResult;
 import de.cubeisland.engine.core.command.CommandContext;
+import de.cubeisland.engine.core.command.CommandSender;
 import de.cubeisland.engine.core.command.result.AsyncResult;
 
 public class AsyncCommandTest extends Test
@@ -44,7 +46,7 @@ public class AsyncCommandTest extends Test
         context.sendMessage("Async GO!");
         return new AsyncResult(module) {
             @Override
-            public void main(CommandContext sender)
+            public void main(CommandInvocation sender)
             {
                 try
                 {
@@ -52,7 +54,7 @@ public class AsyncCommandTest extends Test
                 }
                 catch (InterruptedException ignored)
                 {}
-                sender.sendMessage("Delayed!");
+                ((CommandSender)sender.getCommandSource()).sendMessage("Delayed!");
                 try
                 {
                     Thread.sleep(1000 * 5L);
@@ -62,9 +64,9 @@ public class AsyncCommandTest extends Test
             }
 
             @Override
-            public void onFinish(CommandContext context)
+            public void onFinish(CommandInvocation context)
             {
-                context.sendMessage("Finished!");
+                ((CommandSender)context.getCommandSource()).sendMessage("Finished!");
             }
         };
     }
