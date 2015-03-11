@@ -35,10 +35,10 @@ import de.cubeisland.engine.module.test.tests.UtilTest;
 import de.cubeisland.engine.module.test.tests.l18n.l18nTest;
 import de.cubeisland.engine.module.test.tests.listener.ListenerTest;
 import de.cubeisland.engine.module.test.tests.worldgenerator.WorldGeneratorTest;
-import net.minecraft.server.v1_8_R1.DedicatedPlayerList;
-import net.minecraft.server.v1_8_R1.EntityPlayer;
-import net.minecraft.server.v1_8_R1.PacketPlayOutKeepAlive;
-import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
+import net.minecraft.server.v1_8_R2.DedicatedPlayerList;
+import net.minecraft.server.v1_8_R2.EntityPlayer;
+import net.minecraft.server.v1_8_R2.PacketPlayOutKeepAlive;
+import org.bukkit.craftbukkit.v1_8_R2.CraftServer;
 
 public class Test extends Module
 {
