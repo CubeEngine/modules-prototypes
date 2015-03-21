@@ -42,6 +42,7 @@ public class TableStatsData extends AutoIncrementTable<StatsDataModel, UInteger>
         setAIKey(KEY);
         addForeignKey(TABLE_STATS.getPrimaryKey(), STAT);
         addFields(KEY, STAT, TIME, DATA);
+        TABLE_STATSDATA = this;
     }
 
     @Override

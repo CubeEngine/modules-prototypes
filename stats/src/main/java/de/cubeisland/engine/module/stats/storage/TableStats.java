@@ -35,6 +35,7 @@ public class TableStats extends AutoIncrementTable<StatsModel, UInteger>
         super(prefix + "stats", new Version(1));
         setAIKey(KEY);
         addFields(KEY, STAT);
+        TABLE_STATS = this;
     }
 
     @Override
