@@ -17,9 +17,9 @@
  */
 package de.cubeisland.engine.module.test.tests;
 
-import de.cubeisland.engine.command.CommandInvocation;
-import de.cubeisland.engine.command.parametric.Command;
-import de.cubeisland.engine.command.result.CommandResult;
+import de.cubeisland.engine.butler.CommandInvocation;
+import de.cubeisland.engine.butler.parametric.Command;
+import de.cubeisland.engine.butler.result.CommandResult;
 import de.cubeisland.engine.core.command.CommandContext;
 import de.cubeisland.engine.core.command.CommandSender;
 import de.cubeisland.engine.core.command.result.AsyncResult;
