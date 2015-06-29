@@ -17,7 +17,7 @@
  */
 package de.cubeisland.engine.module.powersigns;
 
-import de.cubeisland.engine.core.module.Module;
+import de.cubeisland.engine.module.core.module.Module;
 import de.cubeisland.engine.module.powersigns.storage.TablePowerSign;
 
 public class Powersigns extends Module

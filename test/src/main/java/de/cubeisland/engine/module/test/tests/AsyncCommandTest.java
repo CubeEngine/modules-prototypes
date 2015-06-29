@@ -20,9 +20,9 @@ package de.cubeisland.engine.module.test.tests;
 import de.cubeisland.engine.butler.CommandInvocation;
 import de.cubeisland.engine.butler.parametric.Command;
 import de.cubeisland.engine.butler.result.CommandResult;
-import de.cubeisland.engine.core.command.CommandContext;
-import de.cubeisland.engine.core.command.CommandSender;
-import de.cubeisland.engine.core.command.result.AsyncResult;
+import de.cubeisland.engine.service.command.CommandContext;
+import de.cubeisland.engine.service.command.CommandSender;
+import de.cubeisland.engine.service.command.result.AsyncResult;
 
 public class AsyncCommandTest extends Test
 {

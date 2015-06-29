@@ -17,10 +17,10 @@
  */
 package de.cubeisland.engine.module.powersigns;
 
-import de.cubeisland.engine.core.user.User;
+import de.cubeisland.engine.service.user.User;
 import de.cubeisland.engine.module.powersigns.signtype.SignType;
 import de.cubeisland.engine.module.powersigns.signtype.SignTypeInfo;
-import org.bukkit.Location;
+import org.spongepowered.api.world.Location;
 
 public class PowerSign<T extends SignType, I extends SignTypeInfo>
 {

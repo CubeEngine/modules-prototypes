@@ -21,14 +21,14 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-import de.cubeisland.engine.core.module.Module;
-import de.cubeisland.engine.core.util.ChatFormat;
+import de.cubeisland.engine.module.core.module.Module;
+import de.cubeisland.engine.module.core.util.ChatFormat;
 import de.cubeisland.engine.module.mystcube.blockpopulator.VillagePopulator;
 import de.cubeisland.engine.module.mystcube.chunkgenerator.FlatMapGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Effect;
-import org.bukkit.Location;
+import org.spongepowered.api.world.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
@@ -36,20 +36,20 @@ import org.bukkit.World.Environment;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 import org.bukkit.block.Furnace;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.player.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.FurnaceSmeltEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.FurnaceRecipe;
-import org.bukkit.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class Mystcube extends Module implements Listener
+public class Mystcube extends Module
 {
     private MystcubeConfig config;
 

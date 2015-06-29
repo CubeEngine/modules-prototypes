@@ -17,8 +17,8 @@
  */
 package de.cubeisland.engine.module.stats.stat;
 
-import de.cubeisland.engine.core.Core;
-import de.cubeisland.engine.core.module.Module;
+import de.cubeisland.engine.module.core.Core;
+import de.cubeisland.engine.module.core.module.Module;
 import de.cubeisland.engine.module.stats.StatsManager;
 import org.bukkit.event.Listener;
 

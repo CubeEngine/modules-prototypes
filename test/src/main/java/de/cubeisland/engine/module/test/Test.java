@@ -24,8 +24,8 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import de.cubeisland.engine.core.bukkit.BukkitCore;
-import de.cubeisland.engine.core.module.Module;
+import de.cubeisland.engine.module.core.sponge.SpongeCore;
+import de.cubeisland.engine.module.core.module.Module;
 import de.cubeisland.engine.module.test.tests.AsyncCommandTest;
 import de.cubeisland.engine.module.test.tests.ClearChatTest;
 import de.cubeisland.engine.module.test.tests.DatabaseTest;
@@ -152,7 +152,7 @@ public class Test extends Module
 
         public KeepAliveTimer()
         {
-            this.mojangServer = ((CraftServer)((BukkitCore)getCore()).getServer()).getHandle();
+            this.mojangServer = ((CraftServer)((SpongeCore)getCore()).getServer()).getHandle();
             this.random = new Random();
         }
 

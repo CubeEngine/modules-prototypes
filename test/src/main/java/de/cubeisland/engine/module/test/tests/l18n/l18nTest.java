@@ -17,7 +17,7 @@
  */
 package de.cubeisland.engine.module.test.tests.l18n;
 
-import de.cubeisland.engine.core.CubeEngine;
+import de.cubeisland.engine.module.core.CubeEngine;
 import de.cubeisland.engine.module.test.tests.Test;
 
 public class l18nTest extends Test

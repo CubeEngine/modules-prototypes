@@ -17,21 +17,21 @@
  */
 package de.cubeisland.engine.module.powersigns.signtype;
 
-import de.cubeisland.engine.core.user.User;
-import de.cubeisland.engine.core.util.ChatFormat;
+import de.cubeisland.engine.service.user.User;
+import de.cubeisland.engine.module.core.util.ChatFormat;
 import de.cubeisland.engine.module.powersigns.PowerSign;
 import de.cubeisland.engine.module.powersigns.Powersigns;
 import de.cubeisland.engine.module.powersigns.signtype.LiftSign.LiftSignInfo;
 import de.cubeisland.engine.module.powersigns.storage.PowerSignModel;
-import org.bukkit.Location;
+import org.spongepowered.api.world.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
-import static de.cubeisland.engine.core.util.formatter.MessageType.NEGATIVE;
-import static de.cubeisland.engine.core.util.formatter.MessageType.POSITIVE;
+import de.cubeisland.engine.module.core.util.formatter.MessageType.NEGATIVE;
+import static de.cubeisland.engine.module.core.util.formatter.MessageType.POSITIVE;
 import static de.cubeisland.engine.module.powersigns.storage.TablePowerSign.TABLE_POWER_SIGN;
 
 public class LiftSign extends SignType<LiftSign, LiftSignInfo>

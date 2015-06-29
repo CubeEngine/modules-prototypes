@@ -19,7 +19,7 @@ package de.cubeisland.engine.module.test.tests;
 
 import java.io.IOException;
 import java.util.List;
-import de.cubeisland.engine.core.filesystem.FileUtil;
+import de.cubeisland.engine.service.filesystem.FileUtil;
 
 public class UtilTest extends Test
 {

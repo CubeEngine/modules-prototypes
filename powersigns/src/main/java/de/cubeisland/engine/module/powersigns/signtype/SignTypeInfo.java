@@ -20,7 +20,7 @@ package de.cubeisland.engine.module.powersigns.signtype;
 import de.cubeisland.engine.module.powersigns.Powersigns;
 import de.cubeisland.engine.module.powersigns.SignManager;
 import de.cubeisland.engine.module.powersigns.storage.PowerSignModel;
-import org.bukkit.Location;
+import org.spongepowered.api.world.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.jooq.types.UInteger;

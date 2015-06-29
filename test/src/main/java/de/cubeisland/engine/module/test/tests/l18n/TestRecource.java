@@ -17,7 +17,7 @@
  */
 package de.cubeisland.engine.module.test.tests.l18n;
 
-import de.cubeisland.engine.core.filesystem.Resource;
+import de.cubeisland.engine.service.filesystem.Resource;
 
 public enum TestRecource implements Resource
 {

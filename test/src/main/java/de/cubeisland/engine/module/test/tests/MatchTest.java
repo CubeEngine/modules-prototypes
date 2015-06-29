@@ -17,7 +17,7 @@
  */
 package de.cubeisland.engine.module.test.tests;
 
-import de.cubeisland.engine.core.util.matcher.Match;
+import de.cubeisland.engine.module.core.util.matcher.Match;
 
 public class MatchTest extends Test
 {

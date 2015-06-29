@@ -17,7 +17,7 @@
  */
 package de.cubeisland.engine.module.stats;
 
-import de.cubeisland.engine.core.module.Module;
+import de.cubeisland.engine.module.core.module.Module;
 import de.cubeisland.engine.module.stats.configuration.DynamicSection;
 import de.cubeisland.engine.module.stats.configuration.DynamicSectionConverter;
 import de.cubeisland.engine.module.stats.configuration.StatsConfig;

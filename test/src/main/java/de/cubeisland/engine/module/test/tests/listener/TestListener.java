@@ -17,14 +17,14 @@
  */
 package de.cubeisland.engine.module.test.tests.listener;
 
-import de.cubeisland.engine.core.CubeEngine;
-import de.cubeisland.engine.core.user.User;
+import de.cubeisland.engine.module.core.CubeEngine;
+import de.cubeisland.engine.service.user.User;
 import de.cubeisland.engine.module.test.Test;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import static de.cubeisland.engine.core.util.formatter.MessageType.NONE;
+import de.cubeisland.engine.module.core.util.formatter.MessageType.NONE;
 
 public class TestListener implements Listener
 {

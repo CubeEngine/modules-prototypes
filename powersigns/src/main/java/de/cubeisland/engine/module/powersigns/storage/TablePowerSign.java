@@ -17,13 +17,14 @@
  */
 package de.cubeisland.engine.module.powersigns.storage;
 
-import de.cubeisland.engine.core.storage.database.AutoIncrementTable;
-import de.cubeisland.engine.core.util.Version;
+import de.cubeisland.engine.service.database.AutoIncrementTable;
+import de.cubeisland.engine.service.database.Database;
+import de.cubeisland.engine.module.core.util.Version;
 import org.jooq.TableField;
 import org.jooq.types.UInteger;
 
-import static de.cubeisland.engine.core.user.TableUser.TABLE_USER;
-import static de.cubeisland.engine.core.world.TableWorld.TABLE_WORLD;
+import static de.cubeisland.engine.service.user.TableUser.TABLE_USER;
+import static de.cubeisland.engine.service.world.TableWorld.TABLE_WORLD;
 import static org.jooq.impl.SQLDataType.INTEGER;
 import static org.jooq.impl.SQLDataType.VARCHAR;
 import static org.jooq.util.mysql.MySQLDataType.TEXT;
@@ -42,9 +43,9 @@ public class TablePowerSign extends AutoIncrementTable<PowerSignModel, UInteger>
     public final TableField<PowerSignModel, Integer> CHUNKZ = createField("chunkz", INTEGER.nullable(false), this);
     public final TableField<PowerSignModel, String> DATA = createField("data", TEXT, this);
 
-    public TablePowerSign(String prefix)
+    public TablePowerSign(String prefix, Database database)
     {
-        super(prefix + "powersign", new Version(1));
+        super(prefix + "powersign", new Version(1), database);
         this.setAIKey(ID);
         this.addUniqueKey(WORLD, X, Y, Z);
         this.addForeignKey(TABLE_USER.getPrimaryKey(), OWNER_ID);
