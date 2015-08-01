@@ -24,7 +24,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import de.cubeisland.engine.module.core.util.formatter.MessageType.NONE;
+import de.cubeisland.engine.service.i18n.formatter.MessageType.NONE;
 
 public class TestListener implements Listener
 {
