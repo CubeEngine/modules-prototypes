@@ -155,9 +155,10 @@ public class LiftSign extends SignType<LiftSign, LiftSignInfo>
     @Override
     public LiftSignInfo createInfo(PowerSignModel model)
     {
-        Location location = new Location(this.module.getCore().getWorldManager().getWorld(model.getValue(
-            TABLE_POWER_SIGN.WORLD)), model.getValue(TABLE_POWER_SIGN.X), model.getValue(TABLE_POWER_SIGN.Y),
-                                         model.getValue(TABLE_POWER_SIGN.Z));
+        Location location = new Location(this.module.getCore().getWorldManager().getWorld(model.getValue(TABLE_POWER_SIGN.WORLD)),
+                                         model.getValue(TABLE_POWER_SIGN.X).doubleValue(),
+                                         model.getValue(TABLE_POWER_SIGN.Y).doubleValue(),
+                                         model.getValue(TABLE_POWER_SIGN.Z).doubleValue());
         BlockState state = location.getBlock().getState();
         if (state instanceof Sign)
         {
