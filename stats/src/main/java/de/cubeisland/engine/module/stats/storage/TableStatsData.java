@@ -19,7 +19,7 @@ package de.cubeisland.engine.module.stats.storage;
 
 import java.sql.Timestamp;
 import de.cubeisland.engine.module.core.storage.database.AutoIncrementTable;
-import de.cubeisland.engine.module.core.util.Version;
+import org.cubeengine.module.core.util.Version;
 import org.jooq.TableField;
 import org.jooq.types.UInteger;
 

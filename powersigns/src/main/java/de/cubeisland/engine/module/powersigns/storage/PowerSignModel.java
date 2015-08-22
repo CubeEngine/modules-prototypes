@@ -17,7 +17,7 @@
  */
 package de.cubeisland.engine.module.powersigns.storage;
 
-import de.cubeisland.engine.service.database.AsyncRecord;
+import org.cubeengine.service.database.AsyncRecord;
 import de.cubeisland.engine.module.core.storage.database.AsyncRecord;
 import de.cubeisland.engine.module.powersigns.signtype.SignTypeInfo;
 import org.spongepowered.api.world.Location;

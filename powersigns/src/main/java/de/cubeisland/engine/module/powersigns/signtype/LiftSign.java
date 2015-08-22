@@ -17,8 +17,8 @@
  */
 package de.cubeisland.engine.module.powersigns.signtype;
 
-import de.cubeisland.engine.service.user.User;
-import de.cubeisland.engine.module.core.util.ChatFormat;
+import org.cubeengine.service.user.User;
+import org.cubeengine.module.core.util.ChatFormat;
 import de.cubeisland.engine.module.powersigns.PowerSign;
 import de.cubeisland.engine.module.powersigns.Powersigns;
 import de.cubeisland.engine.module.powersigns.signtype.LiftSign.LiftSignInfo;
@@ -30,8 +30,8 @@ import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
-import de.cubeisland.engine.service.i18n.formatter.MessageType.NEGATIVE;
-import static de.cubeisland.engine.service.i18n.formatter.MessageType.POSITIVE;
+import org.cubeengine.service.i18n.formatter.MessageType.NEGATIVE;
+import static org.cubeengine.service.i18n.formatter.MessageType.POSITIVE;
 import static de.cubeisland.engine.module.powersigns.storage.TablePowerSign.TABLE_POWER_SIGN;
 
 public class LiftSign extends SignType<LiftSign, LiftSignInfo>

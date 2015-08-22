@@ -17,7 +17,7 @@
  */
 package de.cubeisland.engine.module.powersigns;
 
-import de.cubeisland.engine.service.user.User;
+import org.cubeengine.service.user.User;
 import de.cubeisland.engine.module.powersigns.signtype.SignType;
 import de.cubeisland.engine.module.powersigns.signtype.SignTypeInfo;
 import org.spongepowered.api.world.Location;

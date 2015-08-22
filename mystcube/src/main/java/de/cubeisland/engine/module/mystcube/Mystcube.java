@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import de.cubeisland.engine.module.core.module.Module;
-import de.cubeisland.engine.module.core.util.ChatFormat;
+import org.cubeengine.module.core.util.ChatFormat;
 import de.cubeisland.engine.module.mystcube.blockpopulator.VillagePopulator;
 import de.cubeisland.engine.module.mystcube.chunkgenerator.FlatMapGenerator;
 import org.bukkit.Bukkit;

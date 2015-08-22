@@ -18,9 +18,9 @@
 package de.cubeisland.engine.module.test.tests;
 
 import de.cubeisland.engine.butler.parametric.Command;
-import de.cubeisland.engine.service.command.CommandContext;
-import de.cubeisland.engine.service.user.User;
-import de.cubeisland.engine.module.core.util.ChatFormat;
+import org.cubeengine.service.command.CommandContext;
+import org.cubeengine.service.user.User;
+import org.cubeengine.module.core.util.ChatFormat;
 
 public class ClearChatTest extends Test
 {

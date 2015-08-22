@@ -19,7 +19,7 @@ package de.cubeisland.engine.module.powersigns.signtype;
 
 import java.util.HashMap;
 import java.util.Map;
-import de.cubeisland.engine.service.user.User;
+import org.cubeengine.service.user.User;
 import de.cubeisland.engine.module.powersigns.PowerSign;
 import de.cubeisland.engine.module.powersigns.Powersigns;
 import de.cubeisland.engine.module.powersigns.SignManager;

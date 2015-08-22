@@ -31,7 +31,7 @@ import de.cubeisland.engine.converter.ConversionException;
 import de.cubeisland.engine.converter.ConverterManager;
 import de.cubeisland.engine.module.core.module.Module;
 import de.cubeisland.engine.module.core.storage.database.Database;
-import de.cubeisland.engine.service.task.TaskManager;
+import org.cubeengine.service.task.TaskManager;
 import de.cubeisland.engine.logscribe.Log;
 import de.cubeisland.engine.module.stats.annotations.Configured;
 import de.cubeisland.engine.module.stats.annotations.Scheduled;

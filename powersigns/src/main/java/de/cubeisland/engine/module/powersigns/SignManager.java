@@ -21,7 +21,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import de.cubeisland.engine.service.user.User;
+import org.cubeengine.service.user.User;
 import de.cubeisland.engine.module.powersigns.signtype.LiftSign;
 import de.cubeisland.engine.module.powersigns.signtype.SignType;
 import de.cubeisland.engine.module.powersigns.signtype.SignTypeInfo;
