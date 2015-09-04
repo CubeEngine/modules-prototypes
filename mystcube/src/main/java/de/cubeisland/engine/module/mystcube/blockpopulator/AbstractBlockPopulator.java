@@ -20,7 +20,7 @@ package de.cubeisland.engine.module.mystcube.blockpopulator;
 import java.util.Random;
 import org.bukkit.Chunk;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_8_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.generator.BlockPopulator;
 
 public abstract class AbstractBlockPopulator extends BlockPopulator
