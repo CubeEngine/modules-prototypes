@@ -17,7 +17,7 @@
  */
 package de.cubeisland.engine.module.test.tests;
 
-import de.cubeisland.engine.butler.parametric.Command;
+import org.cubeengine.butler.parametric.Command;
 import org.cubeengine.service.command.CommandContext;
 import org.cubeengine.service.user.User;
 import org.cubeengine.module.core.util.ChatFormat;
